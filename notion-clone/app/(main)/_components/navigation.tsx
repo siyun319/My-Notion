@@ -1,10 +1,19 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronsLeft, MenuIcon } from "lucide-react";
+import {
+  ChevronsLeft,
+  MenuIcon,
+  PlusCircle,
+  Search,
+  Settings,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import UserItem from "./user-item";
+import { Item } from "./item";
+
+import { toast } from "sonner";
 
 /**
  * our sidebar is resizeable on drag,
@@ -17,7 +26,7 @@ import UserItem from "./user-item";
 import { useMediaQuery } from "usehooks-ts";
 
 import { api } from "@/convex/_generated/api";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 
 export const Navigation = () => {
   // we want to collapse the sidebar everytime we click an item
@@ -28,6 +37,7 @@ export const Navigation = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const documents = useQuery(api.documents.get);
+  const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -117,6 +127,16 @@ export const Navigation = () => {
     }
   };
 
+  const handleCreate = () => {
+    const promise = create({ title: "Untitled" });
+
+    toast.promise(promise, {
+      loading: "Creating a new note...",
+      success: "New note created!",
+      error: "Failed to create a new note.",
+    });
+  };
+
   return (
     <>
       <aside
@@ -140,6 +160,9 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItem />
+          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
           {documents?.map((document) => {
