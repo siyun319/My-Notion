@@ -11,6 +11,7 @@ import {
 import { usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import UserItem from "./user-item";
+import { DocumentList } from "./document-list";
 import { Item } from "./item";
 
 import { toast } from "sonner";
@@ -36,7 +37,6 @@ export const Navigation = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const documents = useQuery(api.documents.get);
   const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
@@ -165,9 +165,7 @@ export const Navigation = () => {
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
-          {documents?.map((document) => {
-            return <p key={document._id}> {document.title}</p>;
-          })}
+          <DocumentList />
         </div>
         {/* the line */}
         <div
