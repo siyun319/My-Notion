@@ -1,6 +1,5 @@
 "use client";
 
-
 import { cn } from "@/lib/utils";
 import { ChevronsLeft, MenuIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -17,6 +16,9 @@ import UserItem from "./user-item";
  */
 import { useMediaQuery } from "usehooks-ts";
 
+import { api } from "@/convex/_generated/api";
+import { useQuery } from "convex/react";
+
 export const Navigation = () => {
   // we want to collapse the sidebar everytime we click an item
   // on the sidebar
@@ -24,6 +26,8 @@ export const Navigation = () => {
   // lets you read the ucrrentURL's pathname
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
+
+  const documents = useQuery(api.documents.get);
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -138,7 +142,9 @@ export const Navigation = () => {
           <UserItem />
         </div>
         <div className="mt-4">
-          <p>Documents</p>
+          {documents?.map((document) => {
+            return <p key={document._id}> {document.title}</p>;
+          })}
         </div>
         {/* the line */}
         <div
