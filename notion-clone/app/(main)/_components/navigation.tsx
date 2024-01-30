@@ -1,13 +1,21 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { TrashBox } from "./trash-box";
 import {
   ChevronsLeft,
   MenuIcon,
   PlusCircle,
+  PlusIcon,
   Search,
   Settings,
+  Trash,
 } from "lucide-react";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import UserItem from "./user-item";
@@ -166,6 +174,18 @@ export const Navigation = () => {
         </div>
         <div className="mt-4">
           <DocumentList />
+          <Item onClick={handleCreate} icon={PlusIcon} label="Add a page" />
+          <Popover>
+            <PopoverTrigger className="w-full mt-4">
+              <Item label="Trash" icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent
+              side={isMobile ? "bottom" : "right"}
+              className="p-0 w-72"
+            >
+              <TrashBox />
+            </PopoverContent>
+          </Popover>
         </div>
         {/* the line */}
         <div

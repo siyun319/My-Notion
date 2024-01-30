@@ -12,6 +12,13 @@ import { cn } from "@/lib/utils";
 
 import { Item } from "./item";
 import { FileIcon } from "lucide-react";
+
+/**
+ * When a property is marked as optional with ?,
+ * it means that you can choose whether or not to include
+ *  that property when creating an object that adheres
+ * to the interface or type.
+ */
 interface DocumentListProps {
   parentDocumentId?: Id<"documents">;
   level?: number;
@@ -22,6 +29,8 @@ export const DocumentList = ({
   parentDocumentId,
   level = 0,
 }: DocumentListProps) => {
+  // for the inital -> parentDocumentId -> undefined
+
   // It's used when you have defined route parameters
   //   in your route configuration, and you want to
   //   access their values in a component that matches that route.
@@ -73,6 +82,8 @@ export const DocumentList = ({
   }
   return (
     <>
+      {/* Original hidden, but it is the last child of the parent
+       then it will will appear */}
       <p
         style={{ paddingLeft: level ? `${level * 12 + 25}px` : undefined }}
         className={cn(
