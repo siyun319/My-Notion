@@ -24,6 +24,8 @@ import { Item } from "./item";
 
 import { toast } from "sonner";
 
+import { useSearch } from "@/hooks/use-search";
+
 /**
  * our sidebar is resizeable on drag,
  * and tailwind is not able to do it
@@ -52,6 +54,8 @@ export const Navigation = () => {
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
+
+  const search = useSearch();
 
   useEffect(() => {
     if (isMobile) {
@@ -168,7 +172,7 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItem />
-          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item label="Settings" icon={Settings} onClick={() => {}} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
