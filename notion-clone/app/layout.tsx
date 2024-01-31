@@ -13,6 +13,7 @@ import { ConvexClientProvider } from "@/components/providers/convex-provider";
  * been success or failed.
  */
 import { Toaster } from "sonner";
+import { ModalProvider } from "@/components/providers/modal-provider";
 
 // group file, reflect the entire project
 // this is where you put a reusable layout like a
@@ -55,6 +56,7 @@ export default function RootLayout({
             storageKey="siyun-theme"
           >
             <Toaster position="bottom-center" />
+            <ModalProvider / >
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

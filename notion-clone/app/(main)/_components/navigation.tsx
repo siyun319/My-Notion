@@ -38,6 +38,7 @@ import { useMediaQuery } from "usehooks-ts";
 
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
+import { useSettings } from "@/hooks/use-settings";
 
 export const Navigation = () => {
   // we want to collapse the sidebar everytime we click an item
@@ -46,6 +47,8 @@ export const Navigation = () => {
   // lets you read the ucrrentURL's pathname
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
+
+  const settings = useSettings();
 
   const create = useMutation(api.documents.create);
 
@@ -173,7 +176,7 @@ export const Navigation = () => {
         <div>
           <UserItem />
           <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
-          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item label="Settings" icon={Settings} onClick={settings.onOpen} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
