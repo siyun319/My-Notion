@@ -90,6 +90,12 @@ export const Title = ({ initialData }: TitlePros) => {
   );
 };
 
+/**
+ *
+ *  Title.Skeleton is defining a new component named TitleSkeleton.
+ *  It seems to be part of a larger component or UI framework
+ *  since it is accessed through Title.
+ */
 Title.Skeleton = function TitleSkeleton() {
   return <Skeleton className="h-9 w-20 rounded-md" />;
 };
