@@ -1,23 +1,26 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 import { SettingsModal } from "@/components/modals/settings-modal";
 
+import { CoverImageModal } from "../modals/cover-image-modal";
+
 export const ModalProvider = () => {
-    const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-    // now it won't render on the server set
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
+  // now it won't render on the server set
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-    if (!isMounted) {
-        return null;
-    }
-    return (
-        <>
-            <SettingsModal />
-        </>
-    )
-}
+  if (!isMounted) {
+    return null;
+  }
+  return (
+    <>
+      <SettingsModal />
+      <CoverImageModal />
+    </>
+  );
+};

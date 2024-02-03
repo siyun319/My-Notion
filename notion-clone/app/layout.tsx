@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/theme-providers";
 import { ConvexClient } from "convex/browser";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
 
+import { EdgeStoreProvider } from "@/lib/edgestore";
 /**
  * User always feel not comfortable when they see a blank page
  * when they request something to backend. That's when toast come in.
@@ -48,17 +49,19 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="siyun-theme"
-          >
-            <Toaster position="bottom-center" />
-            <ModalProvider / >
-            {children}
-          </ThemeProvider>
+          <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="siyun-theme"
+            >
+              <Toaster position="bottom-center" />
+              <ModalProvider />
+              {children}
+            </ThemeProvider>
+          </EdgeStoreProvider>
         </ConvexClientProvider>
       </body>
     </html>
