@@ -16,7 +16,7 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "@/components/ui/popover";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import UserItem from "./user-item";
 import { DocumentList } from "./document-list";
@@ -52,6 +52,8 @@ export const Navigation = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const settings = useSettings();
+
+  const router = useRouter();
 
   const create = useMutation(api.documents.create);
 
@@ -146,7 +148,9 @@ export const Navigation = () => {
   };
 
   const handleCreate = () => {
-    const promise = create({ title: "Untitled" });
+    const promise = create({ title: "Untitled" }).then((documentId) => {
+      router.push(`/documents/${documentId}`);
+    });
 
     toast.promise(promise, {
       loading: "Creating a new note...",
