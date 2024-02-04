@@ -1,3 +1,3 @@
 # my-notion
 A clone of notion https://www.notion.so/
-Currently working in progress
+Visited this website at https://note-taking-l7akend8d-siyun319s-projects.vercel.app/
