@@ -96,7 +96,7 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
         {!initialData.icon && !preview && (
           <IconPicker asChild onChange={onIconSelect}>
             <Button
-              className="text-muted-foreground text-sx"
+              className="text-muted-foreground text-xs"
               variant="outline"
               size="sm"
             >
