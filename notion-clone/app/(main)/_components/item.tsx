@@ -122,7 +122,7 @@ export const Item = ({
       {documentIcon ? (
         <div className="shrink-0 mr-2 text-[18px]">{documentIcon}</div>
       ) : (
-        <Icon className="shrink-0 h-[18px] mr-2 text-muted-foreground" />
+        <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
       )}
       <span className="truncate">{label}</span>
       {/* ml-auto -> This is often used to horizontally center an element within its container or to push it to the right edge of its container.
