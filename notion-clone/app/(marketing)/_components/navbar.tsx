@@ -32,8 +32,10 @@ const Navbar = () => {
                 Log in
               </Button>
             </SignInButton>
-            <SignInButton variant="ghost" mode="modal">
-              <Button size="sm">Get Jotion free</Button>
+            <SignInButton mode="modal">
+              <Button variant="ghost" size="sm">
+                Get Jotion free
+              </Button>
             </SignInButton>
           </>
         )}
